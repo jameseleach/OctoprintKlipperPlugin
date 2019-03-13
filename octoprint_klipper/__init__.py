@@ -66,6 +66,7 @@ class KlipperPlugin(
          ),
          configuration = dict(
             path="~/printer.cfg",
+	    logpath="/tmp/klippy.log",
             reload_command="RESTART"
          )
       )
@@ -285,7 +286,7 @@ class KlipperPlugin(
    def on_api_command(self, command, data):
       if command == "listLogFiles":
          files = []
-         for f in glob.glob("/tmp/*.log*"):
+         for f in glob.glob(self._settings.get(["configuration", "logpath"]) + "*"):
             filesize = os.path.getsize(f)
             files.append(dict(
                name=os.path.basename(f) + " ({:.1f} KB)".format(filesize / 1000.0),
