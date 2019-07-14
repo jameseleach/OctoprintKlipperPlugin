@@ -14,7 +14,7 @@ $(function() {
         self.macroName = ko.observable();
         
         var paramObjRegex = /{(.*?)}/g;
-        var keyValueRegex = /(\w*)\s*:\s*([\w\s°"|]*)/g;
+        var keyValueRegex = /(\w*)\s*:\s*([\w\s°"|+\-\.]*)/g;
               
         self.process = function(macro) {
            self.macro = macro.macro();
